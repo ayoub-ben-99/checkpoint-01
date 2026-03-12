@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 )
-
+// تضغط السلسلة النصية باستخدام طريقة الضغط البسيطة
 func ZipString(str string) {
 	if len(str) == 0 {
 		return

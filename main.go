@@ -1,5 +1,5 @@
 package main
 
 func main() {
-	ZipString("ayooub")
+	Thirdtimeisacharm([]string{"a", "w"}, "f")
 }
