@@ -1,5 +1,6 @@
 package main
 
 func main() {
-	Thirdtimeisacharm([]string{"a", "w"}, "f")
+	// HashCode("ABC")
+	PrintMemory([]byte("Hello World\nThis is a test!"))
 }
