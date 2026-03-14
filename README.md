@@ -1,24 +1,12 @@
-### 🧩 **Level 1 — (5%)**
+# levels
 
-تمارين الأساسيات:
-
-[level 1](./levels/level1.md)
-
-```
-only1
-onlya
-onlyb
-onlyf
-onlyz
-```
-
----
+## zone01
 
 ### ⚙️ **Level 2 — (10%)**
 
 عمليات بسيطة، عدّ، شروط:
 
-[level 2](./levels/level2.md)
+[level 2](./level2/level2.md)
 
 ```
 checknumber
@@ -36,7 +24,7 @@ retainfirsthalf
 
 التعامل مع السلاسل و المنطق الرياضي البسيط:
 
-[level 3](./levels/level3.md)
+[level 3](./level3/level3.md)
 
 ```
 cameltosnakecase
@@ -56,7 +44,7 @@ searchreplace
 
 منطق متوسط + خوارزميات قصيرة:
 
-[level 4](./levels/level4.md)
+[level 4](./level4/level4.md)
 
 ```
 cleanstr
@@ -78,7 +66,7 @@ zipstring
 
 خوارزميات متوسطة وعمليات على slices:
 
-[level 5](./levels/level5.md)
+[level 5](./level5/level5.md)
 
 ```
 addprimesum
@@ -101,7 +89,7 @@ wdmatch
 
 تحكم أعلى في النصوص والمنطق:
 
-[level 6](./levels/level6.md)
+[level 6](./level6/level6.md)
 
 ```
 fifthandskip
@@ -116,7 +104,7 @@ slice
 
 خوارزميات نصية مركبة (string manipulations):
 
-[level 7](./levels/level7.md)
+[level 7](./level7/level7.md)
 
 ```
 findpairs
@@ -131,7 +119,7 @@ wordflip
 
 تحويلات وقواعد حسابية ولغوية:
 
-[level 8](./levels/level8.md)
+[level 8](./level8/level8.md)
 
 ```
 itoabase
@@ -146,7 +134,7 @@ romannumbers
 
 منطق معقّد وتحليل متداخل:
 
-[level 9](./levels/level9.md)
+[level 9](./level9/level9.md)
 
 ```
 brackets
@@ -159,7 +147,7 @@ rpncalc
 
 مستوى الإتقان الكامل:
 
-[level 10](./levels/level10.md)
+[level 10](./level10/level10.md)
 
 ```
 brainfuck
