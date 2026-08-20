@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkpoint 01 — Level Exercises</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+</head>
+<body>
+  <nav class="global-nav">
+    <a class="gn-logo" href="#" aria-label="Home">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
+    </a>
+    <div class="gn-links" id="navLinks"></div>
+    <div class="gn-right">
+      <div class="search-wrap">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="search" class="search-input" type="search" placeholder="Search exercises" autocomplete="off" />
+      </div>
+      <button id="toggleAll" class="button-dark-utility" type="button">
+        <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 20 5-5 5 5"/><path d="m7 4 5 5 5-5"/></svg>
+        <span id="toggleAllLabel">Expand all</span>
+      </button>
+      <button id="themeToggle" class="button-dark-utility theme-toggle" type="button" aria-label="Toggle theme">
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <div class="sub-nav-frosted">
+    <span class="sn-title">Checkpoint 01</span>
+    <span class="sn-meta" id="snMeta"></span>
+  </div>
+
+  <main>
+    <section class="tile tile-light hero">
+      <div class="tile-inner hero-grid">
+        <div class="hero-copy">
+          <p class="hero-eyebrow">
+            <svg class="hero-eyebrow-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            Level Exercises · Go
+          </p>
+          <h1 class="hero-display">All levels.<br />One workspace.</h1>
+          <p class="hero-lead">Nine levels of Go exercises — from simple conditions to a full Brainfuck interpreter. Browse, search, and expand any exercise to read its complete description.</p>
+          <div class="hero-actions">
+            <button class="button-primary" type="button" data-scroll="content">Browse exercises</button>
+            <button class="button-secondary-pill" type="button" data-scroll="content">
+              Get started
+              <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+            </button>
+          </div>
+          <div class="hero-stats">
+            <div class="stat"><strong>9</strong><span>levels</span></div>
+            <div class="stat"><strong>54</strong><span>exercises</span></div>
+            <div class="stat"><strong>100%</strong><span>described</span></div>
+          </div>
+        </div>
+
+        <div class="hero-stage">
+          <div class="render-card" aria-hidden="true">
+            <div class="render-bar">
+              <span class="rb-dot rb-dot-red"></span><span class="rb-dot rb-dot-yellow"></span><span class="rb-dot rb-dot-green"></span>
+              <span class="rb-tabs"><span class="rb-tab active">checknumber.go</span><span class="rb-tab">go.mod</span></span>
+              <span class="rb-run">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M5 3l16 9-16 9V3z"/></svg>
+                go run
+              </span>
+            </div>
+            <pre><code class="language-go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">"fmt"</span>
+
+<span class="hljs-comment">// checknumber returns true if any digit is present.</span>
+<span class="hljs-keyword">func</span> <span class="hljs-function">checkNumber</span>(s <span class="hljs-type">string</span>) <span class="hljs-type">bool</span> {
+    <span class="hljs-keyword">for</span> _, r := <span class="hljs-keyword">range</span> s {
+        <span class="hljs-keyword">if</span> r &gt;= <span class="hljs-string">'0'</span> &amp;&amp; r &lt;= <span class="hljs-string">'9'</span> {
+            <span class="hljs-keyword">return true</span>
+        }
+    }
+    <span class="hljs-keyword">return false</span>
+}
+
+<span class="hljs-keyword">func</span> <span class="hljs-function">main</span>() {
+    fmt.Println(checkNumber(<span class="hljs-string">"hello1"</span>)) <span class="hljs-comment">// true</span>
+}<span class="cursor-blink">▌</span></code></pre>
+            <div class="render-output">
+              <span class="ro-label">Output</span>
+              <code>true</code>
+            </div>
+          </div>
+          <div class="hero-chip chip-go">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
+            <span><strong>Go 1.23</strong> · standard library only</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-resources">
+        <span class="hr-label">Go resources &amp; docs</span>
+        <div class="hr-links">
+          <a href="https://go.dev/doc/" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            Docs
+          </a>
+          <a href="https://go.dev/tour/" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 10 5 5-5 5"/><path d="M4 4v7a4 4 0 0 0 4 4h12"/></svg>
+            Tour of Go
+          </a>
+          <a href="https://pkg.go.dev/" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            pkg.go.dev
+          </a>
+          <a href="https://go.dev/play/" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 15-2 5 4-2-4 2"/><path d="M12 3v12"/><path d="M4.9 5.1a10 10 0 0 0 14.2 0"/></svg>
+            Go Playground
+          </a>
+          <a href="https://go.dev/doc/effective_go" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/></svg>
+            Effective Go
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div id="content" class="container"></div>
+
+    <div class="empty" id="emptyState">No exercises match your search.</div>
+  </main>
+
+  <a class="github-fab" href="https://github.com/ayoub-ben-99/checkpoint-01.git" target="_blank" rel="noopener" aria-label="GitHub repository">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+  </a>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
