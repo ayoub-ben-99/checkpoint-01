@@ -4,7 +4,7 @@
 
 ### ⚙️ **Level 2 — (10%)**
 
-عمليات بسيطة، عدّ، شروط:
+Simple operations, counting, conditions:
 
 [level 2](./level2/level2.md)
 
@@ -22,7 +22,7 @@ retainfirsthalf
 
 ### 🔠 **Level 3 — (20%)**
 
-التعامل مع السلاسل و المنطق الرياضي البسيط:
+String handling and simple mathematical logic:
 
 [level 3](./level3/level3.md)
 
@@ -42,7 +42,7 @@ searchreplace
 
 ### 🧮 **Level 4 — (35%)**
 
-منطق متوسط + خوارزميات قصيرة:
+Intermediate logic + short algorithms:
 
 [level 4](./level4/level4.md)
 
@@ -64,7 +64,7 @@ zipstring
 
 ### 🔄 **Level 5 — (50%)**
 
-خوارزميات متوسطة وعمليات على slices:
+Intermediate algorithms and slice operations:
 
 [level 5](./level5/level5.md)
 
@@ -87,7 +87,7 @@ wdmatch
 
 ### 🧠 **Level 6 — (65%)**
 
-تحكم أعلى في النصوص والمنطق:
+Higher control over strings and logic:
 
 [level 6](./level6/level6.md)
 
@@ -102,7 +102,7 @@ slice
 
 ### 🧩 **Level 7 — (75%)**
 
-خوارزميات نصية مركبة (string manipulations):
+Complex string algorithms (string manipulations):
 
 [level 7](./level7/level7.md)
 
@@ -117,7 +117,7 @@ wordflip
 
 ### 🧮 **Level 8 — (85%)**
 
-تحويلات وقواعد حسابية ولغوية:
+Conversions and arithmetic and linguistic rules:
 
 [level 8](./level8/level8.md)
 
@@ -132,7 +132,7 @@ romannumbers
 
 ### 🔒 **Level 9 — (95%)**
 
-منطق معقّد وتحليل متداخل:
+Complex logic and nested analysis:
 
 [level 9](./level9/level9.md)
 
@@ -145,7 +145,7 @@ rpncalc
 
 ### 🧬 **Level 10 — (100%)**
 
-مستوى الإتقان الكامل:
+Complete mastery level:
 
 [level 10](./level10/level10.md)
 

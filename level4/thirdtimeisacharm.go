@@ -1,12 +1,11 @@
 package level4
 
-func Thirdtimeisacharm(arr []string, chr string) {
-	if len(arr) < 3 {
-		println("arr < 3")
-		return
-	} else if arr[2] == chr {
-		println(arr[2], "=", chr)
-	} else {
-		println(arr[2], "!=", chr)
+func ThirdTimeIsACharm(str string) string {
+	result := ""
+
+	for i := 2; i < len(str); i += 3 {
+		result += string(str[i])
 	}
+
+	return result + "\n"
 }

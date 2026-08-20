@@ -1,36 +1,34 @@
 package level4
 
-import "fmt"
-
-func PrintMemory(data []byte) {
-	for i := 0; i < len(data); i += 16 {
-		// العنوان
-		fmt.Printf("%08x  ", i)
-
-		// القيم hex
-		for j := 0; j < 16; j++ {
-			if i+j < len(data) {
-				fmt.Printf("%02x ", data[i+j])
-			} else {
-				fmt.Printf("   ")
-			}
-			if j == 7 {
-				fmt.Printf(" ")
-			}
+func PrintMemory(arr [10]byte) {
+	for i := 0; i < len(arr); i++ {
+		if i == 5 {
+			print("\n")
 		}
 
-		// الحروف القابلة للطباعة
-		fmt.Printf(" |")
-		for j := 0; j < 16; j++ {
-			if i+j < len(data) {
-				b := data[i+j]
-				if b >= 32 && b <= 126 {
-					fmt.Printf("%c", b)
-				} else {
-					fmt.Printf(".")
-				}
-			}
-		}
-		fmt.Printf("|\n")
+		print(hex(arr[i]), " ")
 	}
+
+	print("\n")
+
+	for i := 0; i < len(arr); i++ {
+		if arr[i] >= 32 && arr[i] <= 126 {
+			print(string(arr[i]))
+		} else {
+			print(".")
+		}
+	}
+
+	print("\n")
+}
+
+func hex(n byte) string {
+	digits := "0123456789abcdef"
+
+	result := ""
+
+	result += string(digits[n/16])
+	result += string(digits[n%16])
+
+	return result
 }
