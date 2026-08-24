@@ -5,11 +5,15 @@ const content = document.getElementById("content");
 const searchInput = document.getElementById("search");
 const toggleAllBtn = document.getElementById("toggleAll");
 const emptyState = document.getElementById("emptyState");
-const snMeta = document.getElementById("snMeta");
 const navLinks = document.getElementById("navLinks");
 const footerLinks = document.getElementById("footerLinks");
+const heroLevels = document.getElementById("heroLevels");
+const heroExercises = document.getElementById("heroExercises");
 
-const TINT_PATTERN = ["tile-parchment"];
+const TINT_PATTERN = [
+  "bg-white dark:bg-black text-slate-900 dark:text-white",
+  "bg-slate-50/70 dark:bg-slate-950/70 text-slate-900 dark:text-white"
+];
 
 function escapeHtml(s) {
   return String(s)
@@ -21,10 +25,10 @@ function escapeHtml(s) {
 
 function inline(text) {
   let out = escapeHtml(text);
-  out = out.replace(/`([^`]+)`/g, (m, c) => "<code>" + c + "</code>");
-  out = out.replace(/\*\*([^*]+)\*\*/g, (m, c) => "<strong>" + c + "</strong>");
+  out = out.replace(/`([^`]+)`/g, (m, c) => '<code class="font-mono text-xs px-1.5 py-0.5 bg-slate-200/60 dark:bg-slate-800/80 rounded text-slate-900 dark:text-slate-100">' + c + "</code>");
+  out = out.replace(/\*\*([^*]+)\*\*/g, (m, c) => '<strong class="font-semibold text-slate-900 dark:text-white">' + c + "</strong>");
   out = out.replace(/(^|[^*])\*([^*\n]+)\*/g, (m, b, c) => b + "<em>" + c + "</em>");
-  out = out.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (m, t, u) => '<a href="' + u + '" target="_blank" rel="noopener">' + t + "</a>");
+  out = out.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (m, t, u) => '<a href="' + u + '" target="_blank" rel="noopener" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">' + t + "</a>");
   return out;
 }
 
@@ -55,7 +59,7 @@ function mdToHtml(md) {
         i++;
       }
       i++;
-      html += '<pre><code class="language-' + escapeHtml(lang) + '">' + escapeHtml(code.join("\n")) + "</code></pre>";
+      html += '<pre class="my-4 p-4 rounded-xl bg-slate-900 border border-slate-800 text-slate-200 font-mono text-xs sm:text-sm overflow-x-auto shadow-lg"><code class="language-' + escapeHtml(lang) + '">' + escapeHtml(code.join("\n")) + "</code></pre>";
       continue;
     }
 
@@ -63,14 +67,18 @@ function mdToHtml(md) {
     if (heading) {
       closeList();
       const level = heading[1].length;
-      html += "<h" + level + ">" + inline(heading[2]) + "</h" + level + ">";
+      const sizeClass = level === 1 ? "text-xl sm:text-2xl font-bold mt-6 mb-3 text-slate-900 dark:text-white font-display" :
+                        level === 2 ? "text-lg sm:text-xl font-bold mt-5 mb-2.5 text-slate-900 dark:text-white font-display" :
+                        level === 3 ? "text-base sm:text-lg font-bold mt-4 mb-2 text-slate-900 dark:text-white font-display" :
+                        "text-sm font-bold mt-3 mb-1.5 text-slate-900 dark:text-white font-display";
+      html += "<h" + level + ' class="' + sizeClass + '">' + inline(heading[2]) + "</h" + level + ">";
       i++;
       continue;
     }
 
     if (/^\s*---+\s*$/.test(line) || /^\s*===+\s*$/.test(line)) {
       closeList();
-      html += "<hr />";
+      html += '<hr class="my-5 border-t border-slate-200 dark:border-slate-800" />';
       i++;
       continue;
     }
@@ -78,7 +86,7 @@ function mdToHtml(md) {
     const quote = line.match(/^>\s?(.*)$/);
     if (quote) {
       closeList();
-      html += "<blockquote>" + inline(quote[1]) + "</blockquote>";
+      html += '<blockquote class="my-3 pl-4 border-l-4 border-blue-500 text-slate-600 dark:text-slate-400 italic text-sm sm:text-base">' + inline(quote[1]) + "</blockquote>";
       i++;
       continue;
     }
@@ -94,26 +102,26 @@ function mdToHtml(md) {
       const sepRow = rows[1] ? /^[\s:|-]+$/.test(rows[1].replace(/[| ]/g, "")) : false;
       const headerCells = rows[0].split("|").map((c) => c.trim());
       const body = sepRow ? rows.slice(2) : rows.slice(1);
-      html += "<table><thead><tr>";
+      html += '<div class="overflow-x-auto my-4"><table class="w-full border-collapse text-xs sm:text-sm text-left border border-slate-200 dark:border-slate-800"><thead><tr class="bg-slate-100 dark:bg-slate-800/60 font-semibold text-slate-900 dark:text-white">';
       headerCells.forEach((c) => {
-        html += "<th>" + inline(c) + "</th>";
+        html += '<th class="border border-slate-200 dark:border-slate-800 px-3 py-2">' + inline(c) + "</th>";
       });
       html += "</tr></thead><tbody>";
       body.forEach((row) => {
-        html += "<tr>";
+        html += '<tr class="border-b border-slate-200 dark:border-slate-800/60 hover:bg-slate-50 dark:hover:bg-slate-900/40">';
         row.split("|").forEach((c) => {
-          html += "<td>" + inline(c.trim()) + "</td>";
+          html += '<td class="border border-slate-200 dark:border-slate-800 px-3 py-2">' + inline(c.trim()) + "</td>";
         });
         html += "</tr>";
       });
-      html += "</tbody></table>";
+      html += "</tbody></table></div>";
       continue;
     }
 
     if (/^\s*[-*+]\s+/.test(line)) {
       if (listType !== "ul") {
         closeList();
-        html += "<ul>";
+        html += '<ul class="list-disc pl-6 my-3 space-y-1 sm:space-y-1.5 text-slate-700 dark:text-slate-300">';
         listType = "ul";
       }
       html += "<li>" + inline(line.replace(/^\s*[-*+]\s+/, "")) + "</li>";
@@ -124,7 +132,7 @@ function mdToHtml(md) {
     if (/^\s*\d+[.)]\s+/.test(line)) {
       if (listType !== "ol") {
         closeList();
-        html += "<ol>";
+        html += '<ol class="list-decimal pl-6 my-3 space-y-1 sm:space-y-1.5 text-slate-700 dark:text-slate-300">';
         listType = "ol";
       }
       html += "<li>" + inline(line.replace(/^\s*\d+[.)]\s+/, "")) + "</li>";
@@ -139,7 +147,7 @@ function mdToHtml(md) {
     }
 
     closeList();
-    html += "<p>" + inline(line) + "</p>";
+    html += '<p class="my-2 leading-relaxed text-slate-700 dark:text-slate-300 text-sm sm:text-base">' + inline(line) + "</p>";
     i++;
   }
 
@@ -148,36 +156,42 @@ function mdToHtml(md) {
 }
 
 function buildNavigation() {
+  const totalEx = data.reduce((n, l) => n + l.exercises.length, 0);
+
   data.forEach((level) => {
     const a = document.createElement("a");
-    a.className = "gn-link";
+    a.className = "gn-link px-2.5 py-1 text-white/80 no-underline whitespace-nowrap rounded hover:text-white text-xs font-medium transition-all [&.active]:text-white [&.active]:font-bold [&.active]:bg-white/10";
     a.href = "#level-" + level.id;
     a.dataset.target = "level-" + level.id;
-    a.textContent = String(level.id).toUpperCase();
-    navLinks.appendChild(a);
+    a.textContent = "L" + String(level.id).padStart(2, "0");
+    if (navLinks) navLinks.appendChild(a);
 
     const fl = document.createElement("a");
+    fl.className = "text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors no-underline py-0.5";
     fl.href = "#level-" + level.id;
     fl.textContent = level.title || level.id;
     if (footerLinks) footerLinks.appendChild(fl);
   });
 
-  const totalEx = data.reduce((n, l) => n + l.exercises.length, 0);
-  if (snMeta) snMeta.textContent = data.length + " levels · " + totalEx + " exercises";
+  if (heroLevels) heroLevels.textContent = String(data.length);
+  if (heroExercises) heroExercises.textContent = String(totalEx);
 }
 
 function cardHtml(level, ex, index) {
+  const panelId = "level-" + level.id + "-exercise-" + index;
   return (
-    '<article class="exercise-card" data-idx="' + index + '">' +
-      '<button class="exercise-toggle" type="button" aria-expanded="false">' +
-        '<span class="exercise-index">' + String(index + 1).padStart(2, "0") + "</span>" +
-        '<span class="exercise-name">' + escapeHtml(ex.name) + "</span>" +
-        '<svg class="exercise-chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>' +
-      "</button>" +
-      '<div class="exercise-body" role="region">' +
-        '<div class="exercise-desc">' + mdToHtml(ex.md) + "</div>" +
+    '<details class="exercise-card group border-b border-slate-200/80 dark:border-slate-800 text-left transition-colors hover:bg-slate-500/5" data-idx="' + index + '">' +
+      '<summary class="exercise-toggle flex items-center justify-between gap-4 w-full py-5 px-2.5 cursor-pointer select-none list-none outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg">' +
+        '<div class="flex items-center gap-3.5 min-w-0">' +
+          '<span class="exercise-index font-mono text-xs sm:text-sm text-slate-400 dark:text-slate-500 flex-shrink-0">' + String(index + 1).padStart(2, "0") + "</span>" +
+          '<span class="exercise-name text-base sm:text-lg font-semibold text-slate-900 dark:text-white truncate">' + escapeHtml(ex.name) + "</span>" +
+        "</div>" +
+        '<svg class="exercise-chevron w-5 h-5 text-blue-600 dark:text-blue-400 group-open:rotate-180 transition-transform duration-200 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>' +
+      "</summary>" +
+      '<div id="' + panelId + '" class="exercise-body overflow-hidden">' +
+        '<div class="exercise-desc px-2.5 sm:px-10 pb-8 text-base text-slate-700 dark:text-slate-300 max-w-none">' + mdToHtml(ex.md) + "</div>" +
       "</div>" +
-    "</article>"
+    "</details>"
   );
 }
 
@@ -188,37 +202,34 @@ function buildLevels() {
   data.forEach((level, li) => {
     const tile = TINT_PATTERN[li % TINT_PATTERN.length];
     const sec = document.createElement("section");
-    sec.className = "level-section " + tile;
+    sec.className = "level-section scroll-mt-16 py-16 px-6 border-b border-slate-200/60 dark:border-slate-800/60 transition-colors duration-300 " + tile;
     sec.id = "level-" + level.id;
 
     const inner = document.createElement("div");
-    inner.className = "tile-inner";
+    inner.className = "max-w-4xl mx-auto";
 
     const header = document.createElement("div");
-    header.className = "level-header";
+    header.className = "text-center max-w-2xl mx-auto mb-12";
     header.innerHTML =
-      '<span class="level-number">' +
-      escapeHtml(level.id) +
-      "</span>" +
-      '<h2 class="level-title">' +
+      '<h2 class="level-title font-display text-3xl sm:text-4xl font-semibold tracking-tight mb-2 text-slate-900 dark:text-white">' +
       escapeHtml(level.title || level.id) +
       "</h2>" +
-      '<p class="level-subtitle">' +
+      '<p class="level-subtitle text-base sm:text-lg text-slate-600 dark:text-slate-400 mb-4">' +
       escapeHtml(level.subtitle || "Level exercises") +
       "</p>" +
-      '<div class="level-meta">' +
-      '<span class="level-count"><strong>' +
+      '<div class="level-meta flex items-center justify-center gap-3 flex-wrap text-sm text-slate-500 dark:text-slate-400">' +
+      '<span class="level-count inline-flex items-center gap-1.5"><strong class="font-semibold text-blue-600 dark:text-blue-400">' +
       level.exercises.length +
       "</strong> exercises</span>" +
       (level.unlock
-        ? '<span class="level-unlock">Available from ' + escapeHtml(level.unlock) + "</span>"
+        ? '<span class="level-unlock inline-flex items-center gap-1 px-3 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 font-semibold text-xs tracking-tight">Available from ' + escapeHtml(level.unlock) + "</span>"
         : "") +
       "</div>";
 
     inner.appendChild(header);
 
     const grid = document.createElement("div");
-    grid.className = "exercise-list";
+    grid.className = "exercise-list border-t border-slate-200/80 dark:border-slate-800";
     level.exercises.forEach((ex, ei) => {
       grid.insertAdjacentHTML("beforeend", cardHtml(level, ex, ei));
     });
@@ -240,14 +251,10 @@ function buildLevels() {
   }
 }
 
-function toggleCard(card) {
-  card.classList.toggle("open");
-  const btn = card.querySelector(".exercise-toggle");
-  if (btn) btn.setAttribute("aria-expanded", card.classList.contains("open") ? "true" : "false");
-}
-
 function expandAll(open) {
-  document.querySelectorAll(".exercise-card").forEach((c) => c.classList.toggle("open", open));
+  document.querySelectorAll(".exercise-card").forEach((c) => {
+    c.open = open;
+  });
   const label = document.getElementById("toggleAllLabel");
   if (label) label.textContent = open ? "Collapse all" : "Expand all";
 }
@@ -281,6 +288,7 @@ function onSearch() {
 
 function applyTheme(theme) {
   document.documentElement.setAttribute("data-theme", theme);
+  document.documentElement.classList.toggle("dark", theme === "dark");
   try {
     localStorage.setItem("cp-theme", theme);
   } catch (e) {}
@@ -309,13 +317,12 @@ function init() {
   buildNavigation();
   buildLevels();
 
-  toggleAllBtn.addEventListener("click", onToggleAll);
-  searchInput.addEventListener("input", onSearch);
+  if (window.lucide && typeof window.lucide.createIcons === "function") {
+    window.lucide.createIcons();
+  }
 
-  document.addEventListener("click", (e) => {
-    const card = e.target.closest(".exercise-card");
-    if (card && e.target.closest(".exercise-toggle")) toggleCard(card);
-  });
+  if (toggleAllBtn) toggleAllBtn.addEventListener("click", onToggleAll);
+  if (searchInput) searchInput.addEventListener("input", onSearch);
 
   document.querySelectorAll("[data-scroll]").forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -327,7 +334,6 @@ function init() {
     (entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
-        const id = entry.target.id.replace("level-", "");
         document.querySelectorAll(".gn-link").forEach((l) => {
           l.classList.toggle("active", l.dataset.target === entry.target.id);
         });
