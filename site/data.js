@@ -1,9 +1,38 @@
 // Auto-generated from level*.md files. Do not edit manually.
 const LEVELS = [
   {
+    "id": 1,
+    "title": "Level 1",
+    "subtitle": "Warm-up programs — display a single character",
+    "unlock": "5%",
+    "exercises": [
+      {
+        "name": "only1",
+        "md": "### Instructions\n\nWrite a program that displays a `1` character on the standard output and nothing else.\n\n### Usage\n\n```console\n$ go run .\n1\n$ go run . \"a\" \"b\"\n1\n$ go run . \"a\" \"b\" \"c\"\n1\n```"
+      },
+      {
+        "name": "onlya",
+        "md": "### Instructions\n\nWrite a program that displays an `a` character on the standard output and nothing else.\n\n### Usage\n\n```console\n$ go run .\na\n$ go run . \"hello\" \"world\"\na\n```"
+      },
+      {
+        "name": "onlyb",
+        "md": "### Instructions\n\nWrite a program that displays a `b` character on the standard output and nothing else.\n\n### Usage\n\n```console\n$ go run .\nb\n$ go run . \"hello\" \"world\"\nb\n```"
+      },
+      {
+        "name": "onlyf",
+        "md": "### Instructions\n\nWrite a program that displays an `f` character on the standard output and nothing else.\n\n### Usage\n\n```console\n$ go run .\nf\n$ go run . \"hello\" \"world\"\nf\n```"
+      },
+      {
+        "name": "onlyz",
+        "md": "### Instructions\n\nWrite a program that displays a `z` character on the standard output and nothing else.\n\n### Usage\n\n```console\n$ go run .\nz\n$ go run . \"hello\" \"world\"\nz\n```"
+      }
+    ]
+  },
+  {
     "id": 2,
     "title": "Level 2",
     "subtitle": "Simple operations, counting, conditions",
+    "unlock": "10%",
     "exercises": [
       {
         "name": "checknumber",
@@ -22,8 +51,16 @@ const LEVELS = [
         "md": "### Instructions\n\nWrite a function that takes a `string` as an argument and returns the letter `G` followed by a newline `\\n` if the argument length is more or equal than 3, otherwise returns `Invalid Input` followed by a newline `\\n`.\n\n- If it's an empty string return `G` followed by a newline `\\n`.\n\n### Usage\n\n```go\npackage main\n\nimport (\n\t\"fmt\"\n)\n\nfunc main() {\n\tfmt.Print(PrintIf(\"abcdefz\"))\n\tfmt.Print(PrintIf(\"abc\"))\n\tfmt.Print(PrintIf(\"\"))\n\tfmt.Print(PrintIf(\"14\"))\n}\n```\n\nAnd its output:\n\n```console\n$ go run . | cat -e\nG$\nG$\nG$\nInvalid Input$\n```"
       },
       {
+        "name": "printifnot",
+        "md": "### Instructions\n\nWrite a function that takes a string and returns:\n\n- `\"G\\n\"` if the string's length is less than 3 (including empty string).\n- `\"Invalid Input\\n\"` otherwise.\n\n### Expected function\n\n```go\nfunc PrintIfNot(str string) string {\n\n}\n```\n\n### Usage\n\nHere is a possible program to test your function:\n\n```go\npackage main\n\nimport (\n\t\"fmt\"\n)\n\nfunc main() {\n\tfmt.Print(PrintIfNot(\"abcdefz\"))\n\tfmt.Print(PrintIfNot(\"abc\"))\n\tfmt.Print(PrintIfNot(\"\"))\n\tfmt.Print(PrintIfNot(\"14\"))\n}\n```\n\nAnd its output:\n\n```console\n$ go run . | cat -e\nInvalid Input$\nInvalid Input$\nG$\nG$\n```"
+      },
+      {
         "name": "rectperimeter",
         "md": "### Instructions\n\nWrite a function that takes two `int`'s as arguments, representing the length of width and height of a rectangle and returning the perimeter of the rectangle.\n\n- If one of the arguments is negative it should return `-1`.\n\n### Usage\n\n```go\npackage main\n\nimport (\n\t\"fmt\"\n)\n\nfunc main() {\n\tfmt.Println(RectPerimeter(10, 2))\n\tfmt.Println(RectPerimeter(434343, 898989))\n\tfmt.Println(RectPerimeter(10, -2))\n}\n```\n\nAnd its output:\n\n```console\n$ go run .\n24$\n2666664$\n-1$\n$\n```"
+      },
+      {
+        "name": "retainfirsthalf",
+        "md": "### Instructions\n\nWrite a function called `RetainFirstHalf()` that takes a `string` as an argument and returns the first half of this `string`.\n\n- If the length of the `string` is odd, round it down.\n- If the `string` is empty, return an empty string.\n- If the `string` length is equal to one, return the string.\n\n### Expected function\n\n```go\nfunc RetainFirstHalf(str string) string {\n\n}\n```\n\n### Usage\n\nHere is a possible program to test your function:\n\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"piscine\"\n)\n\nfunc main() {\n\tfmt.Println(piscine.RetainFirstHalf(\"This is the 1st halfThis is the 2nd half\"))\n\tfmt.Println(piscine.RetainFirstHalf(\"A\"))\n\tfmt.Println(piscine.RetainFirstHalf(\"\"))\n\tfmt.Println(piscine.RetainFirstHalf(\"Hello World\"))\n}\n```\n\nAnd its output:\n\n```console\n$ go run . | cat -e\nThis is the 1st half$\nA$\n$\nHello$\n```"
       }
     ]
   },
@@ -31,6 +68,7 @@ const LEVELS = [
     "id": 3,
     "title": "Level 3",
     "subtitle": "String handling and simple mathematical logic",
+    "unlock": "20%",
     "exercises": [
       {
         "name": "cameltosnakecase",
@@ -74,6 +112,7 @@ const LEVELS = [
     "id": 4,
     "title": "Level 4",
     "subtitle": "Intermediate logic + short algorithms",
+    "unlock": "35%",
     "exercises": [
       {
         "name": "cleanstr",
@@ -90,10 +129,6 @@ const LEVELS = [
       {
         "name": "fromto",
         "md": "### Instructions\n\nWrite a function that takes two `integers` and returns a `string` showing the range of numbers from the first to the second.\n\n- The numbers must be separated by a comma and a space.\n- If any of the arguments is bigger than `99` or less than `0`, the function returns `Invalid` followed by a newline `\\n`.\n- Prepend a `0` to any number that is less than `10`.\n- Add a new line `\\n` at the end of the `string`.\n\n### Usage\n\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"piscine\"\n)\n\nfunc main() {\n\tfmt.Print(piscine.FromTo(1, 10))\n\tfmt.Print(piscine.FromTo(10, 1))\n\tfmt.Print(piscine.FromTo(10, 10))\n\tfmt.Print(piscine.FromTo(100, 10))\n}\n```\n\nAnd its output:\n\n```console\n$ go run . | cat -e\n01, 02, 03, 04, 05, 06, 07, 08, 09, 10$\n10, 09, 08, 07, 06, 05, 04, 03, 02, 01$\n10$\nInvalid$\n```"
-      },
-      {
-        "name": "isPrime",
-        "md": "### Instructions\n\nWrite a function that returns `true` if the `int` passed as parameter is a prime number. Otherwise it returns `false`.\n\nThe function must be optimized in order to avoid time-outs with the tester.\n\n(We consider that only positive numbers can be prime numbers)\n\n(We also consider that 1 is **not** a prime number)\n\n### Usage\n\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"piscine\"\n)\n\nfunc main() {\n\tfmt.Println(piscine.IsPrime(5))\n\tfmt.Println(piscine.IsPrime(4))\n}\n```\n\nAnd its output :\n\n```console\n$ go run .\ntrue\nfalse\n$\n```"
       },
       {
         "name": "iscapitalized",
@@ -129,6 +164,7 @@ const LEVELS = [
     "id": 5,
     "title": "Level 5",
     "subtitle": "Intermediate algorithms and slice operations",
+    "unlock": "50%",
     "exercises": [
       {
         "name": "addprimesum",
@@ -184,6 +220,7 @@ const LEVELS = [
     "id": 6,
     "title": "Level 6",
     "subtitle": "Higher control over strings and logic",
+    "unlock": "65%",
     "exercises": [
       {
         "name": "fifthandskip",
@@ -207,6 +244,7 @@ const LEVELS = [
     "id": 7,
     "title": "Level 7",
     "subtitle": "Complex string algorithms (string manipulations)",
+    "unlock": "75%",
     "exercises": [
       {
         "name": "findpairs",
@@ -230,6 +268,7 @@ const LEVELS = [
     "id": 8,
     "title": "Level 8",
     "subtitle": "Conversions and arithmetic and linguistic rules",
+    "unlock": "85%",
     "exercises": [
       {
         "name": "itoabase",
@@ -253,6 +292,7 @@ const LEVELS = [
     "id": 9,
     "title": "Level 9",
     "subtitle": "Complex logic and nested analysis",
+    "unlock": "95%",
     "exercises": [
       {
         "name": "brackets",
@@ -268,6 +308,7 @@ const LEVELS = [
     "id": 10,
     "title": "Level 10",
     "subtitle": "Complete mastery level",
+    "unlock": "100%",
     "exercises": [
       {
         "name": "brainfuck",

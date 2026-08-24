@@ -206,9 +206,14 @@ function buildLevels() {
       '<p class="level-subtitle">' +
       escapeHtml(level.subtitle || "Level exercises") +
       "</p>" +
+      '<div class="level-meta">' +
       '<span class="level-count"><strong>' +
       level.exercises.length +
-      "</strong> exercises</span>";
+      "</strong> exercises</span>" +
+      (level.unlock
+        ? '<span class="level-unlock">Available from ' + escapeHtml(level.unlock) + "</span>"
+        : "") +
+      "</div>";
 
     inner.appendChild(header);
 
@@ -243,7 +248,8 @@ function toggleCard(card) {
 
 function expandAll(open) {
   document.querySelectorAll(".exercise-card").forEach((c) => c.classList.toggle("open", open));
-  if (toggleAllBtn) toggleAllBtn.textContent = open ? "Collapse all" : "Expand all";
+  const label = document.getElementById("toggleAllLabel");
+  if (label) label.textContent = open ? "Collapse all" : "Expand all";
 }
 
 let allOpen = false;

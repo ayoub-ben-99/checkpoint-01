@@ -1,14 +1,35 @@
 package level5
 
-import "fmt"
+import (
+	"os"
+	"strconv"
+)
 
-func Fprime(n int) {
-	result := []int{}
-	for i := 2; n > 1; i++ {
+func FPrime() {
+	if len(os.Args) != 2 {
+		return
+	}
+
+	n, err := strconv.Atoi(os.Args[1])
+	if err != nil || n <= 1 {
+		return
+	}
+
+	first := true
+
+	for i := 2; i <= n; i++ {
 		for n%i == 0 {
-			result = append(result, i)
+			if !first {
+				print("*")
+			}
+
+			print(i)
+			first = false
 			n /= i
 		}
 	}
-	fmt.Println(result)
+
+	if !first {
+		println()
+	}
 }

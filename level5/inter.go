@@ -1,22 +1,43 @@
 package level5
 
-import "fmt"
+import (
+	"os"
 
-func Inter(s1, s2 string) {
-    seen := map[rune]bool{}
-    result := ""
+	"github.com/01-edu/z01"
+)
 
-    for _, v := range s1 {
-        seen[v] = true
-    }
+func Inter() {
+	if len(os.Args) != 3 {
+		return
+	}
 
-    added := map[rune]bool{}
-    for _, v := range s2 {
-        if seen[v] && !added[v] {
-            result += string(v)
-            added[v] = true
-        }
-    }
+	s1 := os.Args[1]
+	s2 := os.Args[2]
 
-    fmt.Println(result)
+	for _, c := range s1 {
+		found := false
+
+		for _, x := range s2 {
+			if c == x {
+				found = true
+				break
+			}
+		}
+
+		if found {
+			already := false
+
+			for _, x := range s1[:0] {
+				if c == x {
+					already = true
+				}
+			}
+
+			if !already {
+				z01.PrintRune(c)
+			}
+		}
+	}
+
+	z01.PrintRune('\n')
 }

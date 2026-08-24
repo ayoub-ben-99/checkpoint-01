@@ -1,8 +1,12 @@
 package main
 
-import "mygo/level5"
+import (
+	"mygo/level4"
+)
 
 func main() {
 	// HashCode("ABC")
-	level5.WdMatch("I like to code", "like code")
+	level4.ZipString("YouuungFellllas")
+	level4.ZipString("Thee quuick browwn fox juumps over the laaazy dog")
+	level4.ZipString("Helloo Therre!")
 }

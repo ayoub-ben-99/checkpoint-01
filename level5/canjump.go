@@ -1,13 +1,16 @@
 package level5
 
 func CanJump(arr []int) bool {
-	maxReach := 0
+	position := 0
 	for i := range arr {
-		if i > maxReach {
+		if i > position {
 			return false
 		}
-		maxReach = max(maxReach, i+arr[i])
-		if maxReach >= len(arr)-1 {
+
+		if i+arr[i] > position {
+			position = i + arr[i]
+		}
+		if position >= len(arr)-1 {
 			return true
 		}
 	}
