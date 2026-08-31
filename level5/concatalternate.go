@@ -1,20 +1,21 @@
 package level5
 
-import "fmt"
-
-func Concatalternate(a, b string) {
-	newStr := ""
-	minLen := len(a)
-	if len(b) < minLen {
-		minLen = len(b)
+func ConcatAlternate(slice1, slice2 []int) []int {
+	newSlice := []int{}
+	if len(slice1) >= len(slice2) {
+		for i := 0; i <= len(slice1)-1; i++ {
+			newSlice = append(newSlice, slice1[i])
+			if len(slice2)-1 != i {
+				newSlice = append(newSlice, slice2[i])
+			}
+		}
+	} else {
+		for i := 0; i <= len(slice2)-1; i++ {
+			newSlice = append(newSlice, slice2[i])
+			if len(slice1)-1 != i {
+				newSlice = append(newSlice, slice1[i])
+			}
+		}
 	}
-
-	for i := 0; i < minLen; i++ {
-		newStr += string(a[i]) + string(b[i])
-	}
-
-	newStr += string(a[minLen:])
-	newStr += string(b[minLen:])
-
-	fmt.Println(newStr)
+	return newSlice
 }
