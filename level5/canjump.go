@@ -1,18 +1,23 @@
 package level5
 
-func CanJump(arr []int) bool {
-	position := 0
-	for i := range arr {
-		if i > position {
+func CanJump(input []uint) bool {
+	if len(input) == 0 {
+		return false
+	}
+
+	p := uint(0)
+
+	for p < uint(len(input)-1) {
+		if input[p] == 0 {
 			return false
 		}
 
-		if i+arr[i] > position {
-			position = i + arr[i]
-		}
-		if position >= len(arr)-1 {
-			return true
+		p += input[p]
+
+		if p >= uint(len(input)) {
+			return false
 		}
 	}
+
 	return true
 }

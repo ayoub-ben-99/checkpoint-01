@@ -1,9 +1,31 @@
 package level5
 
 import (
-	"fmt"
 	"os"
+
+	"github.com/01-edu/z01"
 )
+
+func printNumber(n int) {
+	if n == 0 {
+		z01.PrintRune('0')
+		z01.PrintRune('\n')
+		return
+	}
+
+	digits := ""
+
+	for n > 0 {
+		digits = string(rune(n%10)+'0') + digits
+		n /= 10
+	}
+
+	for _, r := range digits {
+		z01.PrintRune(r)
+	}
+
+	z01.PrintRune('\n')
+}
 
 func isPrime(n int) bool {
 	if n < 2 {
@@ -21,7 +43,7 @@ func isPrime(n int) bool {
 
 func main() {
 	if len(os.Args) != 2 {
-		fmt.Println(0)
+		printNumber(0)
 		return
 	}
 
@@ -30,7 +52,7 @@ func main() {
 
 	for _, c := range s {
 		if c < '0' || c > '9' {
-			fmt.Println(0)
+			printNumber(0)
 			return
 		}
 
@@ -38,7 +60,7 @@ func main() {
 	}
 
 	if n <= 0 {
-		fmt.Println(0)
+		printNumber(0)
 		return
 	}
 
@@ -50,5 +72,5 @@ func main() {
 		}
 	}
 
-	fmt.Println(sum)
+	printNumber(sum)
 }

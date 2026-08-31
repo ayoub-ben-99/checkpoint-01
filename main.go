@@ -1,12 +1,14 @@
 package main
 
 import (
-	"mygo/level4"
+	"fmt"
+	"mygo/level5"
 )
 
 func main() {
-	// HashCode("ABC")
-	level4.ZipString("YouuungFellllas")
-	level4.ZipString("Thee quuick browwn fox juumps over the laaazy dog")
-	level4.ZipString("Helloo Therre!")
+	fmt.Println(level5.Chunk([]int{}, 10))
+	fmt.Println(level5.Chunk([]int{0, 1, 2, 3, 4, 5, 6, 7}, 0))
+	fmt.Println(level5.Chunk([]int{0, 1, 2, 3, 4, 5, 6, 7}, 5))
+	fmt.Println(level5.Chunk([]int{0, 1, 2, 3, 4, 5, 6, 7}, 3))
+	fmt.Println(level5.Chunk([]int{0, 1, 2, 3, 4, 5, 6, 7}, 4))
 }

@@ -38,6 +38,5 @@ func Inter() {
 			}
 		}
 	}
-
 	z01.PrintRune('\n')
 }
