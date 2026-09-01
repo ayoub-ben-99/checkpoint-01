@@ -1,21 +1,22 @@
 package level5
 
 func ConcatAlternate(slice1, slice2 []int) []int {
-	newSlice := []int{}
-	if len(slice1) >= len(slice2) {
-		for i := 0; i <= len(slice1)-1; i++ {
-			newSlice = append(newSlice, slice1[i])
-			if len(slice2)-1 != i {
-				newSlice = append(newSlice, slice2[i])
-			}
-		}
-	} else {
-		for i := 0; i <= len(slice2)-1; i++ {
-			newSlice = append(newSlice, slice2[i])
-			if len(slice1)-1 != i {
-				newSlice = append(newSlice, slice1[i])
-			}
+	if len(slice1) == 0 && len(slice2) == 0 {
+		return nil
+	}
+
+	if len(slice2) > len(slice1) {
+		slice1, slice2 = slice2, slice1
+	}
+
+	result := []int{}
+
+	for i := 0; i < len(slice1); i++ {
+		result = append(result, slice1[i])
+		if i < len(slice2) {
+			result = append(result, slice2[i])
 		}
 	}
-	return newSlice
+
+	return result
 }
