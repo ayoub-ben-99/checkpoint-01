@@ -1,9 +1,8 @@
 package level5
 
 import (
+	"fmt"
 	"os"
-
-	"github.com/01-edu/z01"
 )
 
 func Hiddenp() {
@@ -14,19 +13,17 @@ func Hiddenp() {
 	s1 := os.Args[1]
 	s2 := os.Args[2]
 
-	j := 0
+	i := 0
 
-	for i := 0; i < len(s2) && j < len(s1); i++ {
-		if s1[j] == s2[i] {
-			j++
+	for _, char := range s2 {
+		if i < len(s1) && byte(char) == s1[i] {
+			i++
 		}
 	}
 
-	if j == len(s1) {
-		z01.PrintRune('1')
+	if i == len(s1) {
+		fmt.Println(1)
 	} else {
-		z01.PrintRune('0')
+		fmt.Println(0)
 	}
-
-	z01.PrintRune('\n')
 }

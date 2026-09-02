@@ -1,16 +1,22 @@
 package level5
 
-import "fmt"
+func SaveAndMiss(arg string, num int) string {
+	if num <= 0 {
+		return arg
+	}
+	newStr := ""
+	count := 0
+	save := true
 
-func SaveAndMiss(items []int) {
-	save := 0
-	miss := 0
-	for i := 0; i < len(items)-1; i++ {
-		if items[i] > items[1+i] {
-			save++
-		} else {
-			miss++
+	for _, v := range arg {
+		if save {
+			newStr += string(v)
+		}
+		count++
+		if count == num {
+			save = !save
+			count = 0
 		}
 	}
-	fmt.Printf("save:%d , miss:%d\n", save, miss)
+	return newStr
 }
